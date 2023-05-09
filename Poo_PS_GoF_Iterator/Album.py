@@ -1,18 +1,16 @@
-class Album:
-    def __init__(self):
-        self.lasLaminas = []
+# Clase Album
+from abc import ABC
+from IColeccionAbstracta import IColeccionAbstracta
 
-    def AgregarLamina(self, lamina):
-        self.lasLaminas.append(lamina)
 
-    def __iter__(self):
-        self.actual = 0
-        return self
+class Album(IColeccionAbstracta, ABC):
+    def __init__(self, lasLaminas, nombre):
+        self.__lasLaminas = lasLaminas
+        self.__nombre = nombre
 
-    def __next__(self):
-        if self.actual < len(self.lasLaminas):
-            unaLamina = self.lasLaminas[self.actual]
-            self.actual += 1
-            return unaLamina
-        else:
-            raise StopIteration
+    def set_lamina(self, unaLamina):
+        self.__lasLaminas.append(unaLamina)
+
+    def get_lamina(self, posicion):
+        return self.__lasLaminas[posicion]
+
